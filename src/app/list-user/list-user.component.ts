@@ -3,6 +3,8 @@ import {Router} from "@angular/router";
 import {UserService} from "../service/user.service";
 import {User} from "../model/user.model";
 import {Globals } from '../model/Globals';
+import { DataTablesModule } from 'angular-datatables';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-list-user',
@@ -11,15 +13,22 @@ import {Globals } from '../model/Globals';
 })
 export class ListUserComponent implements OnInit {
 
+  dtOptions: DataTables.Settings = {};
   users: User[];
+  dtTrigger: Subject<any> = new Subject();
 
   constructor(private router: Router, private userService: UserService, private globals:Globals) { }
 
   ngOnInit() {
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      pageLength: 5
+    };
     this.globals.title = "List of users";
     this.userService.getUsers()
     .subscribe(data => {
       this.users = data;
+      this.dtTrigger.next();
     });
   }
 

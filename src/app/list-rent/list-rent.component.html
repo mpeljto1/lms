@@ -4,7 +4,7 @@
   </div>
   <!-- /.box-header -->
   <div class="box-body">
-    <table id="list-rent-table" class="table table-bordered table-striped">
+    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" id="list-rent-table" class="table table-bordered table-striped">
       <thead>
         <tr>
           <th class="hidden">Id</th>
@@ -18,7 +18,7 @@
       <tbody>
         <tr *ngFor="let rent of rents; let i = index;" [ngStyle]="{'background-color':rent.dateReturned === null ? 'red' : 'green' }">
           <td class="hidden">{{rent.id}}</td>
-          <td>{{rent.user}}</td>
+          <td>{{userNames[i]}}</td>
           <td>{{rent.rentedBooks}}</td>
           <td>{{rent.dateIssued | date: 'dd/MM/yyyy'}}</td>
           <td>{{rent.dateReturned | date: 'dd/MM/yyyy'}}</td>

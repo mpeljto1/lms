@@ -20,7 +20,7 @@ export class AddBookComponent implements OnInit {
     this.addForm = this.formBuilder.group({
       id: [],
       isbn: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
-      name: ['', [Validators.required, Validators.minLength(3), Validators.pattern('^[a-zšđčćžA-ZŠĐČĆŽ ]+$')]],
+      name: ['', [Validators.required, Validators.minLength(3), Validators.pattern('^(?:[A-ZŠĐČĆŽa-zšđčćž]+)(?:[A-ZŠĐČĆŽa-zšđčćž0-9 _]*)$')]],
       author: ['', [Validators.required, Validators.minLength(3), Validators.pattern('^[a-zšđčćžA-ZŠĐČĆŽ ]+$')]],
       publisher: ['', [Validators.required, Validators.minLength(3), Validators.pattern('^[a-zšđčćžA-ZŠĐČĆŽ ]+$')]],
       price: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],

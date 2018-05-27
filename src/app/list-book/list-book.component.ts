@@ -3,6 +3,8 @@ import {Router} from "@angular/router";
 import {BookService} from "../service/book.service";
 import {Book} from "../model/book.model";
 import {Globals } from '../model/Globals';
+import { DataTablesModule } from 'angular-datatables';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-list-book',
@@ -12,6 +14,8 @@ import {Globals } from '../model/Globals';
 export class ListBookComponent implements OnInit {
 
   books: Book[];
+  dtOptions: DataTables.Settings = {};
+  dtTrigger: Subject<any> = new Subject();
 
   constructor(private router: Router, private bookService: BookService, private globals:Globals) { }
 
@@ -20,6 +24,7 @@ export class ListBookComponent implements OnInit {
     this.bookService.getBooks()
     .subscribe(data => {
       this.books = data;
+      this.dtTrigger.next();
     });
   }
 

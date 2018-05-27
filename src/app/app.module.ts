@@ -24,7 +24,7 @@ import { ListBookComponent } from './list-book/list-book.component';
 import { BookService } from './service/book.service';
 import { ListRentComponent } from './list-rent/list-rent.component';
 import { RentService } from './service/rent.service';
-
+import { DataTablesModule } from 'angular-datatables';
 
 @NgModule({
   declarations: [
@@ -48,7 +48,8 @@ import { RentService } from './service/rent.service';
     BrowserModule,
     routing,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    DataTablesModule
   ],
   providers: [UserService, BookService, RentService, Globals],
   bootstrap: [AppComponent]
