@@ -1,0 +1,41 @@
+<div class="box">
+  <div class="box-header">
+    <h3 class="box-title"> </h3>
+  </div>
+  <!-- /.box-header -->
+  <div class="box-body">
+    <table id="list-rent-table" class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th class="hidden">Id</th>
+          <th>User</th>
+          <th>Rented books</th>
+          <th>Date issued</th>
+          <th>Date returned</th>
+          <th>Date expired</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let rent of rents; let i = index;" [ngStyle]="{'background-color':rent.dateReturned === null ? 'red' : 'green' }">
+          <td class="hidden">{{rent.id}}</td>
+          <td>{{rent.user}}</td>
+          <td>{{rent.rentedBooks}}</td>
+          <td>{{rent.dateIssued | date: 'dd/MM/yyyy'}}</td>
+          <td>{{rent.dateReturned | date: 'dd/MM/yyyy'}}</td>
+          <td>{{rent.expireDate | date: 'dd/MM/yyyy'}}</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <th class="hidden">Id</th>
+          <th>User</th>
+          <th>Rented books</th>
+          <th>Date issued</th>
+          <th>Date returned</th>
+          <th>Date expired</th>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+  <!-- /.box-body -->
+</div>

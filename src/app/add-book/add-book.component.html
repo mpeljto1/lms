@@ -1,0 +1,147 @@
+<div class="box box-info">
+  <div class="box-header with-border">
+
+  </div>
+  <!-- /.box-header -->
+  <!-- form start -->
+  <form [formGroup]="addForm" (ngSubmit)="onSubmit()" class="form-horizontal">
+    <div class="box-body">
+      <div class="form-group" [ngClass]="{'has-error':submitted && addForm.controls.isbn.errors}">
+        <label for="isbn" class="col-sm-2 control-label">Isbn</label>
+
+        <div class="col-sm-10">
+          <input type="text" formControlName="isbn" class="form-control" id="isbn" placeholder="Isbn" name="isbn">
+          <div *ngIf="submitted && addForm.controls.isbn.errors">
+            <span *ngIf="addForm.controls.isbn.errors.required" class="help-block">
+              <i class="fa fa-times-circle-o"></i> Isbn is required</span>
+            <span *ngIf="addForm.controls.isbn.errors.pattern" class="help-block">
+              <i class="fa fa-times-circle-o"></i> Isbn must contain only numbers</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group" [ngClass]="{'has-error':submitted && addForm.controls.name.errors}">
+        <label for="name" class="col-sm-2 control-label">Name</label>
+
+        <div class="col-sm-10">
+          <input type="text" formControlName="name" id="name" placeholder="Name" name="name" class="form-control">
+          <div *ngIf="submitted && addForm.controls.name.errors">
+            <span *ngIf="addForm.controls.name.errors.required" class="help-block">
+              <i class="fa fa-times-circle-o"></i> Name is required</span>
+            <span *ngIf="addForm.controls.name.errors.minlength" class="help-block">
+              <i class="fa fa-times-circle-o"></i> Name must contain 3 or more letters</span>
+            <span *ngIf="addForm.controls.name.errors.pattern" class="help-block">
+              <i class="fa fa-times-circle-o"></i> Name must contain only letters</span>
+          </div>
+        </div>
+      </div>
+      <div class="form-group" [ngClass]="{'has-error':submitted && addForm.controls.author.errors}">
+        <label for="author" class="col-sm-2 control-label">Author</label>
+
+        <div class="col-sm-10">
+          <input type="text" formControlName="author" id="author" placeholder="Author" name="author" class="form-control">
+          <div *ngIf="submitted && addForm.controls.author.errors">
+            <span *ngIf="addForm.controls.author.errors.required" class="help-block">
+              <i class="fa fa-times-circle-o"></i> Author is required</span>
+            <span *ngIf="addForm.controls.author.errors.minlength" class="help-block">
+              <i class="fa fa-times-circle-o"></i> Author must contain 3 or more letters</span>
+            <span *ngIf="addForm.controls.author.errors.pattern" class="help-block">
+              <i class="fa fa-times-circle-o"></i> Autor must contain only letters.</span>
+          </div>
+        </div>
+      </div>
+      <div class="form-group" [ngClass]="{'has-error':submitted && addForm.controls.publisher.errors}">
+        <label for="publisher" class="col-sm-2 control-label">Publisher</label>
+
+        <div class="col-sm-10">
+          <input type="text" formControlName="publisher" id="publisher" placeholder="Publisher" name="publisher" class="form-control">
+          <div *ngIf="submitted && addForm.controls.publisher.errors">
+            <span *ngIf="addForm.controls.publisher.errors.required" class="help-block">
+              <i class="fa fa-times-circle-o"></i> Publisher is required</span>
+            <span *ngIf="addForm.controls.publisher.errors.minlength" class="help-block">
+              <i class="fa fa-times-circle-o"></i> Publisher must contain 3 or more letters</span>
+            <span *ngIf="addForm.controls.publisher.errors.pattern" class="help-block">
+              <i class="fa fa-times-circle-o"></i> Publisher must contain only letters.</span>
+          </div>
+        </div>
+      </div>
+      <div class="form-group" [ngClass]="{'has-error':submitted && addForm.controls.price.errors}">
+        <label for="price" class="col-sm-2 control-label">Price</label>
+
+        <div class="col-sm-10">
+          <input type="text" formControlName="price" id="price" placeholder="Price" name="price" class="form-control">
+          <div *ngIf="submitted && addForm.controls.price.errors">
+            <span *ngIf="addForm.controls.price.errors.required" class="help-block">
+              <i class="fa fa-times-circle-o"></i> Price is required</span>
+            <span *ngIf="addForm.controls.price.errors.pattern" class="help-block">
+              <i class="fa fa-times-circle-o"></i> Price must contain only numbers.</span>
+          </div>
+        </div>
+      </div>
+      <div class="form-group" [ngClass]="{'has-error':submitted && addForm.controls.edition.errors}">
+        <label for="edition" class="col-sm-2 control-label">Edition</label>
+
+        <div class="col-sm-10">
+          <input type="text" formControlName="edition" id="edition" placeholder="Edition" name="edition" class="form-control">
+          <div *ngIf="submitted && addForm.controls.edition.errors">
+            <span *ngIf="addForm.controls.edition.errors.required" class="help-block">
+              <i class="fa fa-times-circle-o"></i> Edition is required</span>
+            <span *ngIf="addForm.controls.edition.errors.minlength" class="help-block">
+              <i class="fa fa-times-circle-o"></i> Edition must contain 3 or more letters</span>
+            <span *ngIf="addForm.controls.edition.errors.pattern" class="help-block">
+              <i class="fa fa-times-circle-o"></i> Edition must contain only letters.</span>
+          </div>
+        </div>
+      </div>
+      <div class="form-group" [ngClass]="{'has-error':submitted && addForm.controls.branch.errors}">
+        <label for="branch" class="col-sm-2 control-label">Branch</label>
+
+        <div class="col-sm-10">
+          <input type="text" formControlName="branch" id="branch" placeholder="Branch" name="branch" class="form-control">
+          <div *ngIf="submitted && addForm.controls.branch.errors">
+            <span *ngIf="addForm.controls.branch.errors.required" class="help-block">
+              <i class="fa fa-times-circle-o"></i> Branch is required</span>
+            <span *ngIf="addForm.controls.branch.errors.minlength" class="help-block">
+              <i class="fa fa-times-circle-o"></i> Branch must contain 3 or more letters</span>
+            <span *ngIf="addForm.controls.branch.errors.pattern" class="help-block">
+              <i class="fa fa-times-circle-o"></i> Branch must contain only letters.</span>
+          </div>
+        </div>
+      </div>
+      <div class="form-group" [ngClass]="{'has-error':submitted && addForm.controls.quantity.errors}">
+        <label for="quatity" class="col-sm-2 control-label">Quantity</label>
+
+        <div class="col-sm-10">
+          <input type="text" formControlName="quantity" id="quantity" placeholder="Quantity" name="quantity" class="form-control">
+          <div *ngIf="submitted && addForm.controls.quantity.errors">
+            <span *ngIf="addForm.controls.quantity.errors.required" class="help-block">
+              <i class="fa fa-times-circle-o"></i> Quantity is required</span>
+            <span *ngIf="addForm.controls.quantity.errors.pattern" class="help-block">
+              <i class="fa fa-times-circle-o"></i> Quantity must contain only numbers.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group" [ngClass]="{'has-error':submitted && addForm.controls.status.errors}">
+      <label for="status" class="col-sm-2 control-label">Status</label>
+
+      <div class="col-sm-10">
+        <input type="text" formControlName="status" id="status" placeholder="Status" name="status" class="form-control">
+        <div *ngIf="submitted && addForm.controls.status.errors">
+          <span *ngIf="addForm.controls.status.errors.required" class="help-block">
+            <i class="fa fa-times-circle-o"></i> Status is required</span>
+          <span *ngIf="addForm.controls.status.errors.minlength" class="help-block">
+            <i class="fa fa-times-circle-o"></i> Status must contain 3 or more letters</span>
+          <span *ngIf="addForm.controls.status.errors.pattern" class="help-block">
+            <i class="fa fa-times-circle-o"></i> Status must contain only letters.</span>
+        </div>
+      </div>
+    </div>
+    <!-- /.box-body -->
+    <div class="box-footer">
+      <button type="submit" class="btn btn-default">Cancel</button>
+      <button type="submit" class="btn btn-info pull-right">Add</button>
+    </div>
+    <!-- /.box-footer -->
+  </form>
+</div>

@@ -1,0 +1,60 @@
+<div class="box">
+  <div class="box-header">
+    <!--<h3 class="box-title">List of users</h3>-->
+    <button class="btn btn-danger" (click)="addBook()"> Add Book</button>
+  </div>
+  <!-- /.box-header -->
+  <div class="box-body">
+    <table id="list-book-table" class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th class="hidden">Id</th>
+          <th>Isbn</th>
+          <th>Name</th>
+          <th>Author</th>
+          <th>Publisher</th>
+          <th>Price</th>
+          <th>Edition</th>
+          <th>Branch</th>
+          <th>Quantity</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let book of books">
+          <td class="hidden">{{book.id}}</td>
+          <td>{{book.isbn}}</td>
+          <td>{{book.name}}</td>
+          <td>{{book.author}}</td>
+          <td>{{book.publisher}}</td>
+          <td>{{book.price}}</td>
+          <td>{{book.edition}}</td>
+          <td>{{book.branch}}</td>
+          <td>{{book.quantity}}</td>
+          <td>{{book.status}}</td>
+          <td style="white-space: nowrap">
+            <button class="btn btn-danger" (click)="deleteBook(book)"> Delete</button>
+            <button class="btn btn-primary" (click)="editBook(book)" style="margin-left: 20px;"> Edit</button>
+          </td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <th class="hidden">Id</th>
+          <th>Isbn</th>
+          <th>Name</th>
+          <th>Author</th>
+          <th>Publisher</th>
+          <th>Price</th>
+          <th>Edition</th>
+          <th>Branch</th>
+          <th>Quantity</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+  <!-- /.box-body -->
+</div>
