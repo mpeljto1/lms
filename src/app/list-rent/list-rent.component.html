@@ -19,7 +19,7 @@
         <tr *ngFor="let rent of rents; let i = index;" [ngStyle]="{'background-color':rent.dateReturned === null ? 'red' : 'green' }">
           <td class="hidden">{{rent.id}}</td>
           <td>{{userNames[i]}}</td>
-          <td>{{rent.rentedBooks}}</td>
+          <td>{{bookNames[i]}}</td>
           <td>{{rent.dateIssued | date: 'dd/MM/yyyy'}}</td>
           <td>{{rent.dateReturned | date: 'dd/MM/yyyy'}}</td>
           <td>{{rent.expireDate | date: 'dd/MM/yyyy'}}</td>

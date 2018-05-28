@@ -20,7 +20,7 @@ export class ListRentComponent implements OnInit {
 
   rents: Rent[];
   userNames: String[];
-  bookNames: String[];
+  bookNames: any[];
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
 
@@ -45,6 +45,22 @@ export class ListRentComponent implements OnInit {
           res => {
             for (let i = 0; i < res.length; i++) {
               this.userNames.push(res[i].firstName + " " + res[i].lastName);
+            }
+            //this.dtTrigger.next(); // last time table changes is here
+          },
+          error => console.log('Error: ', error)
+        );
+        // treba smisliti kako prikazati nazive knjiga ovo je presporo crasha
+        let bookObservable = new Array();
+        let userBooks = new Array();
+        for (let i = 0; i < this.rents.length; i++) {
+          bookObservable.push(this.bookService.getBooksByIds(this.rents[i].rentedBooks));
+          userBooks.push(this.rents[i].rentedBooks.length);
+        }
+        forkJoin(bookObservable).subscribe(
+          res => {
+            for (let i = 0; i < res.length; i++) {
+              this.bookNames.push(res[i]);
             }
             this.dtTrigger.next(); // last time table changes is here
           },

@@ -31,4 +31,8 @@ export class BookService {
     deleteBook(id:number) {
         return this.http.delete(this.baseUrl + '/' + id);
     }
+
+    getBooksByIds(ids: number[]) {
+        return this.http.post(this.baseUrl + '/bookId',ids);
+    }
 }
