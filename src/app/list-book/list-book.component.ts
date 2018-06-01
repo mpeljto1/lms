@@ -38,12 +38,12 @@ export class ListBookComponent implements OnInit {
   editBook(book:Book) : void {
     localStorage.removeItem('editBookId');
     localStorage.setItem('editBookId', book.id.toString());
-    this.router.navigate(['edit-book']);
+    this.router.navigate(['admin-panel/edit-book']);
     this.globals.title = "Edit book : " + book.name;
   }
 
   addBook() : void {
-    this.router.navigate(['add-book']);
+    this.router.navigate(['admin-panel/add-book']);
     this.globals.title = "Add new book";
   }
 

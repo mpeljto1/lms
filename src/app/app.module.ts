@@ -25,6 +25,10 @@ import { BookService } from './service/book.service';
 import { ListRentComponent } from './list-rent/list-rent.component';
 import { RentService } from './service/rent.service';
 import { DataTablesModule } from 'angular-datatables';
+import { AuthService } from './service/auth.service';
+import { TokenStorage } from './service/token.storage';
+import { Interceptor } from './service/app.interceptor';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -51,7 +55,19 @@ import { DataTablesModule } from 'angular-datatables';
     HttpClientModule,
     DataTablesModule
   ],
-  providers: [UserService, BookService, RentService, Globals],
+  providers: [
+    UserService, 
+    BookService, 
+    RentService, 
+    AuthService, 
+    TokenStorage, 
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: Interceptor,
+      multi: true
+    },
+    Globals
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

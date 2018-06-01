@@ -38,7 +38,7 @@ export class AddBookComponent implements OnInit {
     }
     this.bookService.createBook(this.addForm.value)
     .subscribe(data => {
-      this.router.navigate(['list-book']);
+      this.router.navigate(['admin-panel/list-book']);
     });
   }
 

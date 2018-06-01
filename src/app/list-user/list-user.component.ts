@@ -42,12 +42,12 @@ export class ListUserComponent implements OnInit {
   editUser(user:User) : void {
     localStorage.removeItem('editUserId');
     localStorage.setItem('editUserId', user.id.toString());
-    this.router.navigate(['edit-user']);
+    this.router.navigate(['admin-panel/edit-user']);
     this.globals.title = "Edit user : " + user.firstName + " " + user.lastName;
   }
 
   addUser() : void {
-    this.router.navigate(['add-user']);
+    this.router.navigate(['admin-panel/add-user']);
     this.globals.title = "Add new user";
   }
 

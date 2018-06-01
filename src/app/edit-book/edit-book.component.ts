@@ -21,7 +21,7 @@ export class EditBookComponent implements OnInit {
     let bookId = localStorage.getItem("editBookId");
     if (!bookId) {
       alert("Invalid action.")
-      this.router.navigate(['list-book']);
+      this.router.navigate(['admin-panel/list-book']);
       return;
     }
     this.editForm = this.formBuilder.group({
@@ -51,7 +51,7 @@ export class EditBookComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
-          this.router.navigate(['list-book']);
+          this.router.navigate(['admin-panel/list-book']);
         },
         error => {
           alert(error);

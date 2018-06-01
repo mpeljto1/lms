@@ -37,7 +37,7 @@ export class AddUserComponent implements OnInit {
     }
     this.userService.createUser(this.addForm.value)
     .subscribe(data => {
-      this.router.navigate(['list-user']);
+      this.router.navigate(['admin-panel/list-user']);
     });
   }
 

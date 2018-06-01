@@ -1,0 +1,23 @@
+/*
+.box-body {
+    word-wrap: break-word;         
+    overflow-wrap: break-word;    
+    width: 100%;
+}
+*/
+table {
+    table-layout: fixed;
+    width: 100%;
+}
+
+table td {
+    word-wrap: break-word;         
+    overflow-wrap: break-word;
+    vertical-align: center;
+}
+
+table td button {
+    width: 100%;
+    text-align: left;
+    margin-bottom: 5px;
+}

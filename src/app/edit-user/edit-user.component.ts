@@ -21,7 +21,7 @@ export class EditUserComponent implements OnInit {
     let userId = localStorage.getItem("editUserId");
     if(!userId) {
       alert("Invalid action.")
-      this.router.navigate(['list-user']);
+      this.router.navigate(['admin-panel/list-user']);
       return;
     }
     this.editForm = this.formBuilder.group({
@@ -50,7 +50,7 @@ export class EditUserComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
-          this.router.navigate(['list-user']);
+          this.router.navigate(['admin-panel/list-user']);
         },
         error => {
           alert(error);
