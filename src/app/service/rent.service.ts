@@ -18,4 +18,8 @@ export class RentService {
     getRentsById(id: number) {
         return this.http.get<Rent>(this.baseUrl + '/' + id);
     }
+
+    getNumberOfIssuedBooks(from:string, to:string) {
+        return this.http.get<number>(this.baseUrl  + '/' + 'issuedBooks/from/' + from + '/to/' + to);
+    }
 }

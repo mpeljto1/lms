@@ -29,6 +29,8 @@ import { AuthService } from './service/auth.service';
 import { TokenStorage } from './service/token.storage';
 import { Interceptor } from './service/app.interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,8 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
     AddBookComponent,
     EditBookComponent,
     ListBookComponent,
-    ListRentComponent
+    ListRentComponent,
+    AdminDashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -66,7 +69,8 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
       useClass: Interceptor,
       multi: true
     },
-    Globals
+    Globals,
+    DatePipe
   ],
   bootstrap: [AppComponent]
 })

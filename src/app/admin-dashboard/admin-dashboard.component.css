@@ -1,0 +1,10 @@
+.row {
+    padding: 10px;
+}
+
+.content-header {
+    margin-bottom: 10px;
+    border-bottom-color: black;
+    border-bottom: 1px;
+    border-bottom-style: dotted;
+}

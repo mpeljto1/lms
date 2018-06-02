@@ -35,4 +35,8 @@ export class BookService {
     getBooksByIds(ids: number[]) {
         return this.http.post(this.baseUrl + '/bookId',ids);
     }
+
+    getBooksByDateCreated(from:string, to:string) {
+        return this.http.get<Book[]>(this.baseUrl + '/dateCreated/from/' + from + '/to/' + to);
+    }
 }

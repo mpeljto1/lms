@@ -15,7 +15,7 @@ export class Interceptor implements HttpInterceptor {
   constructor(private token: TokenStorage, private router: Router) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    
+    console.log(this.token.getToken());
     if (this.token.getToken() != null) {
       request = request.clone({
         setHeaders: {

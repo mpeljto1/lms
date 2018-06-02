@@ -1,0 +1,338 @@
+<!-- Main content -->
+<section class="content">
+  <!--Globa row shows number of logged users, number of books users etc-->
+  <div class="row">
+    <div class="col-lg-3 col-xs-6">
+      <!-- small box -->
+      <div class="small-box bg-gray">
+        <div class="inner">
+          <h3>uraditi</h3>
+
+          <p>Logged in user</p>
+        </div>
+        <div class="icon">
+          <i class="fa fa-users"></i>
+        </div>
+        <a href="#" class="small-box-footer">More info
+          <i class="fa fa-arrow-circle-right"></i>
+        </a>
+      </div>
+    </div>
+    <!-- ./col -->
+    <div class="col-lg-3 col-xs-6">
+      <!-- small box -->
+      <div class="small-box bg-gray">
+        <div class="inner">
+          <h3>{{totalBooksNumber}}</h3>
+
+          <p>Total books number</p>
+        </div>
+        <div class="icon">
+          <i class="fa fa-book"></i>
+        </div>
+        <a href="#" [routerLink]="['/admin-panel/list-book']" class="small-box-footer">More info
+          <i class="fa fa-arrow-circle-right"></i>
+        </a>
+      </div>
+    </div>
+    <!-- ./col -->
+    <div class="col-lg-3 col-xs-6">
+      <!-- small box -->
+      <div class="small-box bg-gray">
+        <div class="inner">
+          <h3>{{totalMembersNumber}}</h3>
+
+          <p>Total members number</p>
+        </div>
+        <div class="icon">
+          <i class="fa fa-users"></i>
+        </div>
+        <a href="#" [routerLink]="['/admin-panel/list-user']" class="small-box-footer">More info
+          <i class="fa fa-arrow-circle-right"></i>
+        </a>
+      </div>
+    </div>
+    <!-- ./col -->
+    <div class="col-lg-3 col-xs-6">
+      <!-- small box -->
+      <div class="small-box bg-gray">
+        <div class="inner">
+          <h3>uraditi</h3>
+
+          <p>Non returned books</p>
+        </div>
+        <div class="icon">
+          <i class="glyphicon glyphicon-repeat"></i>
+        </div>
+        <a href="#" class="small-box-footer">More info
+          <i class="fa fa-arrow-circle-right"></i>
+        </a>
+      </div>
+    </div>
+    <!-- ./col -->
+  </div>
+  <!--Today report row-->
+  <div class="row bg-gray-light" id="today">
+    <section class="content-header">
+      <h1>Today report</h1>
+    </section>
+    <section>
+      <div class="row">
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-aqua">
+            <div class="inner">
+              <h3>{{newBooksToday}}</h3>
+
+              <p>New book today</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-book"></i>
+            </div>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-green">
+            <div class="inner">
+              <h3>{{booksIssuedToday}}</h3>
+
+              <p>Books issued</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-book"></i>
+            </div>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-yellow">
+            <div class="inner">
+              <h3>uraditi</h3>
+
+              <p>New members</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-users"></i>
+            </div>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-red">
+            <div class="inner">
+              <h3>uraditi</h3>
+
+              <p>Books returned</p>
+            </div>
+            <div class="icon">
+              <i class="glyphicon glyphicon-repeat"></i>
+            </div>
+          </div>
+        </div>
+        <!-- ./col -->
+      </div>
+    </section>
+  </div>
+  <!--Last day report-->
+  <div class="row bg-gray-light">
+    <section class="content-header">
+      <h1>Last day report</h1>
+    </section>
+    <section>
+      <div class="row">
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-aqua">
+            <div class="inner">
+              <h3>{{newBooksYesterday}}</h3>
+
+              <p>New books last day</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-book"></i>
+            </div>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-green">
+            <div class="inner">
+              <h3>{{booksIssuedYesterday}}</h3>
+
+              <p>Books issued</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-book"></i>
+            </div>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-yellow">
+            <div class="inner">
+              <h3>uraditi</h3>
+
+              <p>New members</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-users"></i>
+            </div>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-red">
+            <div class="inner">
+              <h3>uraditi</h3>
+
+              <p>Books returned</p>
+            </div>
+            <div class="icon">
+              <i class="glyphicon glyphicon-repeat"></i>
+            </div>
+          </div>
+        </div>
+        <!-- ./col -->
+      </div>
+    </section>
+  </div>
+  <!--Last week report-->
+  <div class="row bg-gray-light">
+    <section class="content-header">
+      <h1>Last 7 day report</h1>
+    </section>
+    <section>
+      <div class="row">
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-aqua">
+            <div class="inner">
+              <h3>{{newBooksLastWeek}}</h3>
+
+              <p>New books last week</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-book"></i>
+            </div>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-green">
+            <div class="inner">
+              <h3>{{booksIssuedLastWeek}}</h3>
+
+              <p>Books issued</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-book"></i>
+            </div>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-yellow">
+            <div class="inner">
+              <h3>uraditi</h3>
+
+              <p>New members</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-users"></i>
+            </div>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-red">
+            <div class="inner">
+              <h3>uraditi</h3>
+
+              <p>Books returned</p>
+            </div>
+            <div class="icon">
+              <i class="glyphicon glyphicon-repeat"></i>
+            </div>
+          </div>
+        </div>
+        <!-- ./col -->
+      </div>
+    </section>
+  </div>
+  <!--Last month report-->
+  <div class="row bg-gray-light">
+    <section class="content-header">
+      <h1>Last 30 day report</h1>
+    </section>
+    <section>
+      <div class="row">
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-aqua">
+            <div class="inner">
+              <h3>{{newBooksLastMonth}}</h3>
+
+              <p>New books last month</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-book"></i>
+            </div>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-green">
+            <div class="inner">
+              <h3>{{booksIssuedLastMonth}}</h3>
+
+              <p>Books issued</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-book"></i>
+            </div>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-yellow">
+            <div class="inner">
+              <h3>uraditi</h3>
+
+              <p>New members</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-users"></i>
+            </div>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-red">
+            <div class="inner">
+              <h3>uraditi</h3>
+
+              <p>Books returned</p>
+            </div>
+            <div class="icon">
+              <i class="glyphicon glyphicon-repeat"></i>
+            </div>
+          </div>
+        </div>
+        <!-- ./col -->
+      </div>
+    </section>
+  </div>
+</section>
