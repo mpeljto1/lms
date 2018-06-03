@@ -30,4 +30,12 @@ export class UserService {
     deleteUser(id:number) {
         return this.http.delete(this.baseUrl + '/' + id);
     }
+
+    getUsersByDateCreated(from:string, to:string) {
+        return this.http.get<User[]>(this.baseUrl + '/dateCreated/from/' + from + '/to/' + to);
+    }
+
+    getUserByUsername(username:string) {
+        return this.http.get<User>(this.baseUrl + '/username/' + username);
+    }
 }

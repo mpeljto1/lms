@@ -31,6 +31,11 @@ import { Interceptor } from './service/app.interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { DatePipe } from '@angular/common';
+import { ListPaymentComponent } from './list-payment/list-payment.component';
+import { PaymentService } from './service/payment.service';
+import { UserPanelComponent } from './user-panel/user-panel.component';
+import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
+import { UserListRentComponent } from './user-list-rent/user-list-rent.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +54,11 @@ import { DatePipe } from '@angular/common';
     EditBookComponent,
     ListBookComponent,
     ListRentComponent,
-    AdminDashboardComponent
+    AdminDashboardComponent,
+    ListPaymentComponent,
+    UserPanelComponent,
+    UserDashboardComponent,
+    UserListRentComponent
   ],
   imports: [
     BrowserModule,
@@ -62,6 +71,7 @@ import { DatePipe } from '@angular/common';
     UserService, 
     BookService, 
     RentService, 
+    PaymentService,
     AuthService, 
     TokenStorage, 
     {

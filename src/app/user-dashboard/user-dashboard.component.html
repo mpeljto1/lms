@@ -1,0 +1,24 @@
+<!-- Main content -->
+<section class="content">
+
+  <div class="row">
+    <div class="col-lg-4 col-xs-6 proba" *ngFor="let book of availableBooks; let i=index;">
+      <div class="small-box bg-light-blue-active">
+        <div class="inner">
+          <h4>{{"Name: " + availableBooks[i].name}}</h4>
+          <p>{{"Author: " + availableBooks[i].author}}</p>
+          <p>{{"Publisher: " + availableBooks[i].publisher}}</p>
+          <p>{{"Price: " + availableBooks[i].price}}</p>
+          <p>{{"Edition: " + availableBooks[i].edition}}</p>
+          <p>{{"Branch: " + availableBooks[i].branch}}</p>
+        </div>
+        <div class="icon">
+          <i class="fa fa-book"></i>
+        </div>
+        <a href="#" class="small-box-footer" >Rent book
+          <i class="fa fa-arrow-circle-right"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

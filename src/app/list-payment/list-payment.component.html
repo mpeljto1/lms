@@ -1,0 +1,41 @@
+<div class="box">
+  <div class="box-header">
+    <h3 class="box-title"> </h3>
+  </div>
+  <!-- /.box-header -->
+  <div class="box-body">
+    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" id="list-rent-table" class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th class="hidden">Id</th>
+          <th>Amount</th>
+          <th>Payment Date</th>
+          <th>Payment Type</th>
+          <th>Rent</th>
+          <th>User</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let payment of payments; let i = index;">
+          <td class="hidden">{{payment.id}}</td>
+          <td>{{payment.amount}}</td>
+          <td>{{payment.paymentDate | date: 'dd/MM/yyyy'}}</td>
+          <td>{{payment.paymentType}}</td>
+          <td>{{payment.rent}}</td>
+          <td>{{userNames[i]}}</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <th class="hidden">Id</th>
+          <th>Amount</th>
+          <th>Payment Date</th>
+          <th>Payment Type</th>
+          <th>Rent</th>
+          <th>User</th>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+  <!-- /.box-body -->
+</div>

@@ -39,4 +39,8 @@ export class BookService {
     getBooksByDateCreated(from:string, to:string) {
         return this.http.get<Book[]>(this.baseUrl + '/dateCreated/from/' + from + '/to/' + to);
     }
+
+    getAvailableBooks() {
+        return this.http.get<Book[]>(this.baseUrl + '/availableBooks');
+    }
 }

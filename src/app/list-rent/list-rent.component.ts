@@ -23,6 +23,7 @@ export class ListRentComponent implements OnInit {
   bookNames: any[];
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
+  render:boolean = false;
 
   constructor(private router: Router, private rentService: RentService, private globals: Globals,
     private userService: UserService, private bookService: BookService) {
@@ -62,6 +63,7 @@ export class ListRentComponent implements OnInit {
             for (let i = 0; i < res.length; i++) {
               this.bookNames.push(res[i]);
             }
+            this.render = true;
             this.dtTrigger.next(); // last time table changes is here
           },
           error => console.log('Error: ', error)

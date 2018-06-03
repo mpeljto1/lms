@@ -22,6 +22,14 @@ export class AdminDashboardComponent implements OnInit {
   newBooksYesterday = 0;
   newBooksLastWeek = 0;
   newBooksLastMonth = 0;
+  newUsersToday = 0;
+  newUsersYesterday = 0;
+  newUsersLastWeek = 0;
+  newUsersLastMonth = 0;
+  booksReturnedToday = 0;
+  booksReturnedYesterday = 0;
+  booksReturnedLastWeek = 0;
+  booksReturnedLastMonth = 0;
 
   constructor(private globals:Globals, private userService:UserService, private bookService:BookService,
   private rentService:RentService, private datePipe:DatePipe) { }
@@ -53,7 +61,17 @@ export class AdminDashboardComponent implements OnInit {
     this.bookService.getBooksByDateCreated(from,to)
     .subscribe(res => {
       this.newBooksToday = res.length;
-    })
+    });
+
+    this.userService.getUsersByDateCreated(from,to)
+    .subscribe(res => {
+      this.newUsersToday = res.length;
+    });
+
+    this.rentService.getNumberOfReturnedBooks(from,to)
+    .subscribe(res => {
+      this.booksReturnedToday = res.length;
+    });
 
     // number of issued books last day
     today = new Date();
@@ -70,7 +88,17 @@ export class AdminDashboardComponent implements OnInit {
     this.bookService.getBooksByDateCreated(from,to)
     .subscribe(res => {
       this.newBooksYesterday = res.length;
-    })
+    });
+
+    this.userService.getUsersByDateCreated(from,to)
+    .subscribe(res => {
+      this.newUsersYesterday = res.length;
+    });
+
+    this.rentService.getNumberOfReturnedBooks(from,to)
+    .subscribe(res => {
+      this.booksReturnedYesterday = res.length;
+    });
 
     // number of issued books last week
     today = new Date();
@@ -87,7 +115,17 @@ export class AdminDashboardComponent implements OnInit {
     this.bookService.getBooksByDateCreated(from,to)
     .subscribe(res => {
       this.newBooksLastWeek = res.length;
-    })
+    });
+
+    this.userService.getUsersByDateCreated(from,to)
+    .subscribe(res => {
+      this.newUsersLastWeek = res.length;
+    });
+
+    this.rentService.getNumberOfReturnedBooks(from,to)
+    .subscribe(res => {
+      this.booksReturnedLastWeek = res.length;
+    });
 
     // number of issued books last month
     today = new Date();
@@ -104,7 +142,17 @@ export class AdminDashboardComponent implements OnInit {
     this.bookService.getBooksByDateCreated(from,to)
     .subscribe(res => {
       this.newBooksLastMonth = res.length;
-    })
+    });
+
+    this.userService.getUsersByDateCreated(from,to)
+    .subscribe(res => {
+      this.newUsersLastMonth = res.length;
+    });
+
+    this.rentService.getNumberOfReturnedBooks(from,to)
+    .subscribe(res => {
+      this.booksReturnedLastMonth = res.length;
+    });
     
   }
 
