@@ -36,6 +36,7 @@ import { PaymentService } from './service/payment.service';
 import { UserPanelComponent } from './user-panel/user-panel.component';
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 import { UserListRentComponent } from './user-list-rent/user-list-rent.component';
+import { UserRentFormComponent } from './user-rent-form/user-rent-form.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { UserListRentComponent } from './user-list-rent/user-list-rent.component
     ListPaymentComponent,
     UserPanelComponent,
     UserDashboardComponent,
-    UserListRentComponent
+    UserListRentComponent,
+    UserRentFormComponent
   ],
   imports: [
     BrowserModule,

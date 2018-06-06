@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 
 
 @Injectable()
@@ -14,7 +15,7 @@ export class AuthService {
 
   attemptAuth(ussername: string, password: string): Observable<any> {
     const credentials = {username: ussername, password: password};
-    return this.http.post('http://localhost:8100/token/generate-token', credentials).pipe(
+    return this.http.post('https://localhost:8100/token/generate-token', credentials).pipe(
       catchError(error => { 
         return this.handleError(error);
       })
@@ -23,8 +24,8 @@ export class AuthService {
 
   handleError(error:HttpErrorResponse) {
     let errMsg = (error.message) ? error.message : error.status ? `${error.status} - ${error.statusText}` : 'Server error';
-    console.log(errMsg);
-    return Observable.throw(errMsg);
+    console.log(error);
+    return throwError(error);
   }
 
 }

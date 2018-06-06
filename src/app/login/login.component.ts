@@ -6,6 +6,8 @@ import { AuthService } from '../service/auth.service';
 import { TokenStorage } from '../service/token.storage';
 import { UserService } from '../service/user.service';
 import {Observable} from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { BookService } from '../service/book.service';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +21,8 @@ export class LoginComponent implements OnInit {
   invalidLogin: boolean = false;
 
   constructor(private formBuilder: FormBuilder, private router: Router, private authService: AuthService,
-    private tokenStorage: TokenStorage, private userService: UserService) { }
+    private tokenStorage: TokenStorage, private userService: UserService, private http:HttpClient,
+  private bookService: BookService) { }
 
   onSubmit() {
     this.submitted = true;
@@ -47,11 +50,23 @@ export class LoginComponent implements OnInit {
           })
       },
       error => {
-        
-        alert(error);
+        let errMsg = (error.message) ? error.message : error.status ? `${error.status} - ${error.statusText}` : 'Server error';
+        alert(errMsg);
       }
     );
 
+  }
+
+  proba() {
+    
+    var headers = new HttpHeaders().set('Authorization', 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtcHV6aWMiLCJyb2xlIjoidXNlciIsImlzcyI6Imh0dHA6Ly9kZXZnbGFuLmNvbSIsImlhdCI6MTUyODE0NzA3NywiZXhwIjoxNTI4MTQ4ODc3fQ.dMtkkkoE7vR7lSoVAFgQs87m3gFKDHbTw7o5s81T3JA');
+        var options =  {
+            headers: headers
+        };
+    this.http.get('http://localhost:8000/api/books',options)
+    .subscribe(res => {
+      console.log(res);
+    })
   }
 
   ngOnInit() {

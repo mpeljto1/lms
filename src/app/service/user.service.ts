@@ -9,7 +9,7 @@ const httpOptions = {
 @Injectable()
 export class UserService {
     constructor(private http: HttpClient) { }
-    baseUrl: string = 'http://localhost:8100/api/users';
+    baseUrl: string = 'https://localhost:8100/api/users';
 
     getUsers() {
         return this.http.get<User[]>(this.baseUrl);

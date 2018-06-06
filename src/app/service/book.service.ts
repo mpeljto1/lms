@@ -10,7 +10,7 @@ const httpOptions = {
 export class BookService {
 
     constructor(private http: HttpClient) { }
-    baseUrl: string = 'http://localhost:8000/api/books';
+    baseUrl: string = 'https://localhost:8000/api/books';
 
     getBooks() {
         return this.http.get<Book[]>(this.baseUrl);

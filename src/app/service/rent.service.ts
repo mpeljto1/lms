@@ -9,7 +9,7 @@ const httpOptions = {
 @Injectable()
 export class RentService {
     constructor(private http: HttpClient) { }
-    baseUrl: string = 'http://localhost:8200/api/rents';
+    baseUrl: string = 'https://localhost:8200/api/rents';
 
     getRents() {
         return this.http.get<Rent[]>(this.baseUrl);
@@ -33,5 +33,9 @@ export class RentService {
 
     rentBook(rent: Rent) {
         return this.http.post(this.baseUrl,rent);
+    }
+
+    returnABook(rent: Rent) {
+        return this.http.post(this.baseUrl + '/return-rented',rent);
     }
 }

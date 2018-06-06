@@ -13,6 +13,7 @@
           <th>Date issued</th>
           <th>Date returned</th>
           <th>Date expired</th>
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -23,6 +24,7 @@
           <td>{{rent.dateIssued | date: 'dd/MM/yyyy'}}</td>
           <td>{{rent.dateReturned | date: 'dd/MM/yyyy'}}</td>
           <td>{{rent.expireDate | date: 'dd/MM/yyyy'}}</td>
+          <td><button class="btn btn-primary" (click)="returnBook(rent)"> Return book</button></td>
         </tr>
       </tbody>
       <tfoot>
@@ -33,6 +35,7 @@
           <th>Date issued</th>
           <th>Date returned</th>
           <th>Date expired</th>
+          <th>Actions</th>
         </tr>
       </tfoot>
     </table>

@@ -70,4 +70,14 @@ export class ListRentComponent implements OnInit {
         );
       });
   }
+
+  returnBook(rent:Rent) {
+    this.rentService.returnABook(rent)
+    .subscribe(res => {
+      this.router.navigate(['admin-panel/list-rent']);
+    },
+  error => {
+    alert(error.error);
+  })
+  }
 }

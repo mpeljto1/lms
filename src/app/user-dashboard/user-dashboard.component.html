@@ -15,10 +15,71 @@
         <div class="icon">
           <i class="fa fa-book"></i>
         </div>
-        <a href="#" class="small-box-footer" >Rent book
+        <a type="button" (click)="bookDetails(availableBooks[i].name, availableBooks[i].id)" data-toggle="modal" data-target="#myModal"
+          href="" class="small-box-footer">Rent book
           <i class="fa fa-arrow-circle-right"></i>
         </a>
       </div>
     </div>
   </div>
 </section>
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Rent book</h4>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="rentForm" (ngSubmit)="onSubmit()" class="form-horizontal">
+          <div class="box-body">
+
+            <div class="form-group" [ngClass]="{'has-error':submitted && rentForm.controls.dateIssued.errors}">
+              <label for="firstName" class="col-sm-2 control-label">Issued date</label>
+
+              <div class="col-sm-10">
+                <input type="text" formControlName="dateIssued" class="form-control" id="dateIssued" placeholder="Date format: day-month-year"
+                  name="dateIssued" value="{{dateIssued}}" readonly="readonly">
+              </div>
+            </div>
+
+            <div class="form-group" [ngClass]="{'has-error':submitted && rentForm.controls.dateExpired.errors}">
+              <label for="firstName" class="col-sm-2 control-label">Return date</label>
+
+              <div class="col-sm-10">
+                <input type="text" formControlName="dateExpired" class="form-control" id="dateExpired" placeholder="Date format: day-month-year"
+                  name="dateExpired">
+                <div *ngIf="submitted && rentForm.controls.dateExpired.errors">
+                  <span *ngIf="rentForm.controls.dateExpired.errors.required" class="help-block">
+                    <i class="fa fa-times-circle-o"></i> Date is required</span>
+                  <span *ngIf="rentForm.controls.dateExpired.errors.pattern" class="help-block">
+                    <i class="fa fa-times-circle-o"></i> Date must be in format dd-MM-yyyy</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group" [ngClass]="{'has-error':submitted && rentForm.controls.book.errors}">
+              <label for="firstName" class="col-sm-2 control-label">Book</label>
+
+              <div class="col-sm-10">
+                <input type="text" formControlName="book" class="form-control" id="book" placeholder="Book name" name="book" value="{{rentBookName}}"
+                  readonly="readonly">
+              </div>
+            </div>
+
+
+          </div>
+          <div class="box-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-info pull-right">Rent</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -9,7 +9,7 @@ const httpOptions = {
 @Injectable()
 export class PaymentService {
     constructor(private http: HttpClient) { }
-    baseUrl: string = 'http://localhost:8300/api/payments';
+    baseUrl: string = 'https://localhost:8300/api/payments';
 
     getPayments() {
         return this.http.get<Payment[]>(this.baseUrl);

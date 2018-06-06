@@ -1,0 +1,120 @@
+<div class="box box-info">
+  <div class="box-header with-border">
+    <h3 class="box-title">Rent book</h3>
+  </div>
+  <!-- /.box-header -->
+  <!-- form start -->
+  <form [formGroup]="rentForm" (ngSubmit)="onSubmit()" class="form-horizontal">
+    <div class="box-body">
+      <div class="form-group" [ngClass]="{'has-error':submitted && rentForm.controls.firstName.errors}">
+        <label for="firstName" class="col-sm-2 control-label">Book</label>
+
+        <div class="col-sm-10">
+          <input type="text" formControlName="firstName" class="form-control" id="firstName" placeholder="First Name" name="firstName">
+          <div *ngIf="submitted && rentForm.controls.firstName.errors">
+            <span *ngIf="rentForm.controls.firstName.errors.required" class="help-block">
+              <i class="fa fa-times-circle-o"></i> First name is required</span>
+            <span *ngIf="rentForm.controls.firstName.errors.minlength" class="help-block">
+              <i class="fa fa-times-circle-o"></i> First name must contain 3 or more letters</span>
+            <span *ngIf="rentForm.controls.firstName.errors.pattern" class="help-block">
+              <i class="fa fa-times-circle-o"></i> First name must contain only letters</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group" [ngClass]="{'has-error':submitted && rentForm.controls.lastName.errors}">
+        <label for="lastName" class="col-sm-2 control-label">Last Name</label>
+
+        <div class="col-sm-10">
+          <input type="text" formControlName="lastName" id="lastName" placeholder="Last Name" name="lastName" class="form-control">
+          <div *ngIf="submitted && rentForm.controls.lastName.errors">
+            <span *ngIf="rentForm.controls.lastName.errors.required" class="help-block">
+              <i class="fa fa-times-circle-o"></i> Last name is required</span>
+            <span *ngIf="rentForm.controls.lastName.errors.minlength" class="help-block">
+              <i class="fa fa-times-circle-o"></i> Last name must contain 3 or more letters</span>
+            <span *ngIf="rentForm.controls.lastName.errors.pattern" class="help-block">
+              <i class="fa fa-times-circle-o"></i> Last name must contain only letters</span>
+          </div>
+        </div>
+      </div>
+      <div class="form-group" [ngClass]="{'has-error':submitted && rentForm.controls.address.errors}">
+        <label for="address" class="col-sm-2 control-label">Address</label>
+
+        <div class="col-sm-10">
+          <input type="text" formControlName="address" id="address" placeholder="Address" name="address" class="form-control">
+          <div *ngIf="submitted && rentForm.controls.address.errors">
+            <span *ngIf="rentForm.controls.address.errors.required" class="help-block">
+              <i class="fa fa-times-circle-o"></i> Address is required</span>
+            <span *ngIf="rentForm.controls.address.errors.pattern" class="help-block">
+              <i class="fa fa-times-circle-o"></i> Address must contain only letters and numbers. Must start with letter.</span>
+          </div>
+        </div>
+      </div>
+      <div class="form-group" [ngClass]="{'has-error':submitted && rentForm.controls.gender.errors}">
+        <label for="gender" class="col-sm-2 control-label">Gender</label>
+
+        <div class="col-sm-10">
+          <input type="text" formControlName="gender" id="gender" placeholder="Gender" name="gender" class="form-control">
+          <div *ngIf="submitted && rentForm.controls.gender.errors">
+            <span *ngIf="rentForm.controls.gender.errors.required" class="help-block">
+              <i class="fa fa-times-circle-o"></i> Gender is required</span>
+            <span *ngIf="rentForm.controls.gender.errors.pattern" class="help-block">
+              <i class="fa fa-times-circle-o"></i> Gender can only be m or f</span>
+          </div>
+        </div>
+      </div>
+      <div class="form-group" [ngClass]="{'has-error':submitted && rentForm.controls.phone.errors}">
+        <label for="phone" class="col-sm-2 control-label">Phone</label>
+
+        <div class="col-sm-10">
+          <input type="text" formControlName="phone" id="phone" placeholder="Phone" name="phone" class="form-control">
+          <div *ngIf="submitted && rentForm.controls.phone.errors">
+            <span *ngIf="rentForm.controls.phone.errors.required" class="help-block">
+              <i class="fa fa-times-circle-o"></i> Phone is required</span>
+          </div>
+        </div>
+      </div>
+      <div class="form-group" [ngClass]="{'has-error':submitted && rentForm.controls.role.errors}">
+        <label for="role" class="col-sm-2 control-label">Role</label>
+
+        <div class="col-sm-10">
+          <input type="text" formControlName="role" id="role" placeholder="Role" name="role" class="form-control">
+          <div *ngIf="submitted && rentForm.controls.role.errors">
+            <span *ngIf="rentForm.controls.role.errors.required" class="help-block">
+              <i class="fa fa-times-circle-o"></i> Role is required</span>
+            <span *ngIf="rentForm.controls.role.errors.pattern" class="help-block">
+              <i class="fa fa-times-circle-o"></i> Role can be user or admin</span>
+          </div>
+        </div>
+      </div>
+      <div class="form-group" [ngClass]="{'has-error':submitted && rentForm.controls.username.errors}">
+        <label for="username" class="col-sm-2 control-label">Username</label>
+
+        <div class="col-sm-10">
+          <input type="text" formControlName="username" id="username" placeholder="Username" name="username" class="form-control">
+          <div *ngIf="submitted && rentForm.controls.username.errors">
+            <span *ngIf="rentForm.controls.username.errors.required" class="help-block">
+              <i class="fa fa-times-circle-o"></i> Username is required</span>
+          </div>
+        </div>
+      </div>
+      <div class="form-group" [ngClass]="{'has-error':submitted && rentForm.controls.password.errors}">
+        <label for="password" class="col-sm-2 control-label">Password</label>
+
+        <div class="col-sm-10">
+          <input type="password" formControlName="password" id="password" placeholder="Password" name="password" class="form-control">
+          <div *ngIf="submitted && rentForm.controls.password.errors">
+            <span *ngIf="rentForm.controls.password.errors.required" class="help-block">
+              <i class="fa fa-times-circle-o"></i> Password is required</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.box-body -->
+    <div class="box-footer">
+      <button type="submit" class="btn btn-default">Cancel</button>
+      <button type="submit" class="btn btn-info pull-right">Add</button>
+    </div>
+    <!-- /.box-footer -->
+  </form>
+</div>
