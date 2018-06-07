@@ -25,7 +25,7 @@ import { BookService } from './service/book.service';
 import { ListRentComponent } from './list-rent/list-rent.component';
 import { RentService } from './service/rent.service';
 import { DataTablesModule } from 'angular-datatables';
-import { AuthService } from './service/auth.service';
+import { AuthService2 } from './service/auth.service';
 import { TokenStorage } from './service/token.storage';
 import { Interceptor } from './service/app.interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -37,6 +37,10 @@ import { UserPanelComponent } from './user-panel/user-panel.component';
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 import { UserListRentComponent } from './user-list-rent/user-list-rent.component';
 import { UserRentFormComponent } from './user-rent-form/user-rent-form.component';
+import { SocialLoginModule, AuthServiceConfig, GoogleLoginProvider } from "angular5-social-login";
+import { getAuthServiceConfigs } from './socialLoginConfig';
+import { RegisterComponent } from './register/register.component';
+
 
 @NgModule({
   declarations: [
@@ -60,21 +64,23 @@ import { UserRentFormComponent } from './user-rent-form/user-rent-form.component
     UserPanelComponent,
     UserDashboardComponent,
     UserListRentComponent,
-    UserRentFormComponent
+    UserRentFormComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
     routing,
     ReactiveFormsModule,
     HttpClientModule,
-    DataTablesModule
+    DataTablesModule,
+    SocialLoginModule
   ],
   providers: [
     UserService, 
     BookService, 
     RentService, 
     PaymentService,
-    AuthService, 
+    AuthService2, 
     TokenStorage, 
     {
       provide: HTTP_INTERCEPTORS,
@@ -82,7 +88,11 @@ import { UserRentFormComponent } from './user-rent-form/user-rent-form.component
       multi: true
     },
     Globals,
-    DatePipe
+    DatePipe,
+    {
+      provide: AuthServiceConfig,
+      useFactory: getAuthServiceConfigs
+    }
   ],
   bootstrap: [AppComponent]
 })

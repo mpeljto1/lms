@@ -2,12 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
-import { AuthService } from '../service/auth.service';
+import { AuthService2 } from '../service/auth.service';
 import { TokenStorage } from '../service/token.storage';
 import { UserService } from '../service/user.service';
 import {Observable} from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BookService } from '../service/book.service';
+import { AuthService, GoogleLoginProvider } from "angular5-social-login";
 
 @Component({
   selector: 'app-login',
@@ -20,9 +21,9 @@ export class LoginComponent implements OnInit {
   submitted: boolean = false;
   invalidLogin: boolean = false;
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private authService: AuthService,
+  constructor(private formBuilder: FormBuilder, private router: Router, private authService: AuthService2,
     private tokenStorage: TokenStorage, private userService: UserService, private http:HttpClient,
-  private bookService: BookService) { }
+  private bookService: BookService, private socialAuthService: AuthService) { }
 
   onSubmit() {
     this.submitted = true;
@@ -67,6 +68,22 @@ export class LoginComponent implements OnInit {
     .subscribe(res => {
       console.log(res);
     })
+  }
+
+  public signinWithGoogle () {
+    
+    let socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
+  
+    this.socialAuthService.signIn(socialPlatformProvider).then(
+      (userData) => { //on success
+         //this will return user data from google. What you need is a user token which you will send it to the server
+         //this.sendToRestApiMethod(userData.idToken);
+         console.log(userData);
+         // add code that calls user-service to generate token then redirect
+         let email = userData.email;
+         
+      }
+    );
   }
 
   ngOnInit() {

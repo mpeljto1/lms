@@ -14,6 +14,7 @@ import { ListPaymentComponent } from './list-payment/list-payment.component';
 import { UserPanelComponent } from './user-panel/user-panel.component';
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 import { UserListRentComponent } from './user-list-rent/user-list-rent.component';
+import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
     {
@@ -37,6 +38,8 @@ const routes: Routes = [
             { path: 'list-rent', component: UserListRentComponent}
         ]
     },
+    { path: 'login', component: LoginComponent },
+    { path:'register', component: RegisterComponent },
     { path: '', component: LoginComponent } // vjerovatno defaultna koja će se pozvati
 ];
 

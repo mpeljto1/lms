@@ -5,11 +5,11 @@ import {first} from "rxjs/operators";
 import {Router} from "@angular/router";
 
 @Component({
-  selector: 'app-add-user',
-  templateUrl: './add-user.component.html',
-  styleUrls: ['./add-user.component.css']
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.css']
 })
-export class AddUserComponent implements OnInit {
+export class RegisterComponent implements OnInit {
 
   addForm: FormGroup;
   submitted: boolean = false;
@@ -27,18 +27,19 @@ export class AddUserComponent implements OnInit {
       email: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$')]],
       password: ['', Validators.required],
       username: ['',Validators.required],
-      role: ['', [Validators.required, Validators.pattern('^(user|admin)$')]]
+      role: []
     });
   }
 
   onSubmit() {
     this.submitted = true;
+    this.addForm.controls.role.setValue('user');
     if(this.addForm.invalid) {
       return;
     }
-    this.userService.createUser(this.addForm.value)
+    this.userService.registerUser(this.addForm.value)
     .subscribe(data => {
-      this.router.navigate(['admin-panel/list-user']);
+      this.router.navigate(['/login']);
     });
   }
 

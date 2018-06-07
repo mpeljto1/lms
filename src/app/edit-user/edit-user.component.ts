@@ -31,6 +31,7 @@ export class EditUserComponent implements OnInit {
       address: ['', [Validators.required, Validators.pattern('^(?:[A-ZŠĐČĆŽa-zšđčćž]+)(?:[A-ZŠĐČĆŽa-zšđčćž0-9 _]*)$')]],
       gender: ['', [Validators.required, Validators.pattern('^[mf]$')]],
       phone: ['', Validators.required],
+      email: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$')]],
       password: ['', Validators.required],
       username: ['',Validators.required],
       role: ['', [Validators.required, Validators.pattern('^(user|admin)$')]]

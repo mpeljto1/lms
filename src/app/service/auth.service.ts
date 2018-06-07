@@ -6,7 +6,7 @@ import { throwError } from 'rxjs';
 
 
 @Injectable()
-export class AuthService {
+export class AuthService2 {
 
   baseUrl: 'http://localhost:8080/email2sms/';
 

@@ -38,4 +38,8 @@ export class UserService {
     getUserByUsername(username:string) {
         return this.http.get<User>(this.baseUrl + '/username/' + username);
     }
+
+    registerUser(user:User) {
+        return this.http.post(this.baseUrl + '/register', user);
+    }
 }
