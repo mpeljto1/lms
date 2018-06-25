@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { AppheaderComponent } from './components/appheader/appheader.component';
@@ -40,6 +40,9 @@ import { UserRentFormComponent } from './user-rent-form/user-rent-form.component
 import { SocialLoginModule, AuthServiceConfig, GoogleLoginProvider } from "angular5-social-login";
 import { getAuthServiceConfigs } from './socialLoginConfig';
 import { RegisterComponent } from './register/register.component';
+import { ErrorPageComponent } from './error-page/error-page.component';
+import MyErrorHandler from './MyErorrHandler';
+import { RoleGuard } from './service/role.guard';
 
 
 @NgModule({
@@ -65,7 +68,8 @@ import { RegisterComponent } from './register/register.component';
     UserDashboardComponent,
     UserListRentComponent,
     UserRentFormComponent,
-    RegisterComponent
+    RegisterComponent,
+    ErrorPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -92,7 +96,8 @@ import { RegisterComponent } from './register/register.component';
     {
       provide: AuthServiceConfig,
       useFactory: getAuthServiceConfigs
-    }
+    },
+    RoleGuard
   ],
   bootstrap: [AppComponent]
 })

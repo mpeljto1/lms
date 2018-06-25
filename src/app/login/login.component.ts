@@ -58,18 +58,6 @@ export class LoginComponent implements OnInit {
 
   }
 
-  proba() {
-    
-    var headers = new HttpHeaders().set('Authorization', 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtcHV6aWMiLCJyb2xlIjoidXNlciIsImlzcyI6Imh0dHA6Ly9kZXZnbGFuLmNvbSIsImlhdCI6MTUyODE0NzA3NywiZXhwIjoxNTI4MTQ4ODc3fQ.dMtkkkoE7vR7lSoVAFgQs87m3gFKDHbTw7o5s81T3JA');
-        var options =  {
-            headers: headers
-        };
-    this.http.get('http://localhost:8000/api/books',options)
-    .subscribe(res => {
-      console.log(res);
-    })
-  }
-
   public signinWithGoogle () {
     
     let socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
@@ -81,7 +69,25 @@ export class LoginComponent implements OnInit {
          console.log(userData);
          // add code that calls user-service to generate token then redirect
          let email = userData.email;
-         
+         this.authService.attemptAuthGoogle(email)
+         .subscribe(data => {
+           this.tokenStorage.saveToken(data.token);
+
+           this.userService.getUserByEmail(email)
+          .subscribe(res => {
+            this.tokenStorage.saveUserId(res.id.toString());
+            this.tokenStorage.saveRole(res.role.toLowerCase());
+            if (res.role.toLowerCase() == 'admin') {
+              this.router.navigate(['admin-panel']);
+            } else {
+              this.router.navigate(['user-panel']);
+            }
+          })
+         })
+      },
+      error => {
+        let errMsg = (error.message) ? error.message : error.status ? `${error.status} - ${error.statusText}` : 'Server error';
+        alert(errMsg);
       }
     );
   }

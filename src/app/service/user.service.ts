@@ -42,4 +42,8 @@ export class UserService {
     registerUser(user:User) {
         return this.http.post(this.baseUrl + '/register', user);
     }
+
+    getUserByEmail(email:string) {
+        return this.http.get<User>(this.baseUrl + '/email/' + email);
+    }
 }

@@ -15,32 +15,69 @@ import { UserPanelComponent } from './user-panel/user-panel.component';
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 import { UserListRentComponent } from './user-list-rent/user-list-rent.component';
 import { RegisterComponent } from './register/register.component';
+import { ErrorPageComponent } from './error-page/error-page.component';
+import { RoleGuard } from './service/role.guard';
 
 const routes: Routes = [
     {
         path: 'admin-panel', component: AdminPanelComponent,
+        canActivateChild: [RoleGuard],
+        data: { roles: ['admin'] },
         children: [
-            { path: '', component: AdminDashboardComponent},
-            { path: 'list-user', component: ListUserComponent},    
-            { path: 'add-user', component: AddUserComponent },
-            { path: 'edit-user', component: EditUserComponent },
-            { path: 'add-book', component: AddBookComponent },
-            { path: 'edit-book', component: EditBookComponent },
-            { path: 'list-book', component: ListBookComponent },
-            { path: 'list-rent', component: ListRentComponent },
-            { path: 'list-payment', component: ListPaymentComponent}
+            { path: '', component: AdminDashboardComponent },
+            {
+                path: 'list-user', component: ListUserComponent,
+                canActivateChild: [RoleGuard],
+                data: { roles: ['admin'] },
+            },
+            {
+                path: 'add-user', component: AddUserComponent,
+                canActivateChild: [RoleGuard],
+                data: { roles: ['admin'] },
+            },
+            {
+                path: 'edit-user', component: EditUserComponent,
+                canActivateChild: [RoleGuard],
+                data: { roles: ['admin'] },
+            },
+            {
+                path: 'add-book', component: AddBookComponent,
+                canActivateChild: [RoleGuard],
+                data: { roles: ['admin'] },
+            },
+            {
+                path: 'edit-book', component: EditBookComponent,
+                canActivateChild: [RoleGuard],
+                data: { roles: ['admin'] },
+            },
+            {
+                path: 'list-book', component: ListBookComponent,
+                canActivateChild: [RoleGuard],
+                data: { roles: ['admin'] },
+            },
+            {
+                path: 'list-rent', component: ListRentComponent,
+                canActivateChild: [RoleGuard],
+                data: { roles: ['admin'] },
+            },
+            {
+                path: 'list-payment', component: ListPaymentComponent,
+                canActivateChild: [RoleGuard],
+                data: { roles: ['admin'] },
+            }
         ]
     },
     {
         path: 'user-panel', component: UserPanelComponent,
         children: [
-            { path: '', component: UserDashboardComponent},
-            { path: 'list-rent', component: UserListRentComponent}
+            { path: '', component: UserDashboardComponent },
+            { path: 'list-rent', component: UserListRentComponent }
         ]
     },
     { path: 'login', component: LoginComponent },
-    { path:'register', component: RegisterComponent },
-    { path: '', component: LoginComponent } // vjerovatno defaultna koja će se pozvati
+    { path: 'register', component: RegisterComponent },
+    { path: 'error', component: ErrorPageComponent },
+    { path: '', component: LoginComponent } 
 ];
 
 export const routing = RouterModule.forRoot(routes);
