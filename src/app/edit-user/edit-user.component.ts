@@ -34,7 +34,9 @@ export class EditUserComponent implements OnInit {
       email: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$')]],
       password: ['', Validators.required],
       username: ['',Validators.required],
-      role: ['', [Validators.required, Validators.pattern('^(user|admin)$')]]
+      role: ['', [Validators.required, Validators.pattern('^(user|admin)$')]],
+      createdAt: [],
+      updatedAt: []
     });
     this.userService.getUserById(+userId)
       .subscribe( data => {

@@ -35,6 +35,8 @@ export class EditBookComponent implements OnInit {
       branch: ['', [Validators.required, Validators.minLength(3), Validators.pattern('^[a-zšđčćžA-ZŠĐČĆŽ ]+$')]],
       quantity: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
       status: ['', [Validators.required, Validators.minLength(3), Validators.pattern('^[a-zšđčćžA-ZŠĐČĆŽ ]+$')]],
+      createdAt: [],
+      updatedAt: []
     });
     this.bookService.getBookById(+bookId)
     .subscribe(data => {

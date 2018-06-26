@@ -24,7 +24,11 @@ const routes: Routes = [
         canActivateChild: [RoleGuard],
         data: { roles: ['admin'] },
         children: [
-            { path: '', component: AdminDashboardComponent },
+            {
+                path: '', component: AdminDashboardComponent,
+                canActivateChild: [RoleGuard],
+                data: { roles: ['admin'] },
+            },
             {
                 path: 'list-user', component: ListUserComponent,
                 canActivateChild: [RoleGuard],
@@ -69,15 +73,25 @@ const routes: Routes = [
     },
     {
         path: 'user-panel', component: UserPanelComponent,
+        canActivateChild: [RoleGuard],
+        data: { roles: ['user'] },
         children: [
-            { path: '', component: UserDashboardComponent },
-            { path: 'list-rent', component: UserListRentComponent }
+            {
+                path: '', component: UserDashboardComponent,
+                canActivateChild: [RoleGuard],
+                data: { roles: ['user'] },
+            },
+            {
+                path: 'list-rent', component: UserListRentComponent,
+                canActivateChild: [RoleGuard],
+                data: { roles: ['user'] },
+            }
         ]
     },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
     { path: 'error', component: ErrorPageComponent },
-    { path: '', component: LoginComponent } 
+    { path: '', component: LoginComponent }
 ];
 
 export const routing = RouterModule.forRoot(routes);
