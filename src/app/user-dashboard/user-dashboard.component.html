@@ -1,4 +1,4 @@
-<!-- Main content -->
+<!--
 <section class="content">
 
   <div class="row">
@@ -23,9 +23,70 @@
     </div>
   </div>
 </section>
+-->
+
+<div class="box">
+  <div class="box-header">
+    <button class="btn btn-danger" (click)="addBook()"> Add Book</button>
+  </div>
+  <div class="box-body">
+    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" id="list-book-table" class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th class="hidden">Id</th>
+          <th>Isbn</th>
+          <th>Name</th>
+          <th>Author</th>
+          <th>Publisher</th>
+          <th>Price</th>
+          <th>Edition</th>
+          <th>Branch</th>
+          <th>Quantity</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let book of availableBooks; let i=index;">
+          <td class="hidden">{{book.id}}</td>
+          <td>{{book.isbn}}</td>
+          <td>{{book.name}}</td>
+          <td>{{book.author}}</td>
+          <td>{{book.publisher}}</td>
+          <td>{{book.price}}</td>
+          <td>{{book.edition}}</td>
+          <td>{{book.branch}}</td>
+          <td>{{book.quantity}}</td>
+          <td>{{book.status}}</td>
+          <td>
+            <a type="button" (click)="bookDetails(availableBooks[i].name, availableBooks[i].id)" data-toggle="modal" data-target="#myModal"
+              href="" class="small-box-footer">Rent book
+              <i class="fa fa-arrow-circle-right"></i>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <th class="hidden">Id</th>
+          <th>Isbn</th>
+          <th>Name</th>
+          <th>Author</th>
+          <th>Publisher</th>
+          <th>Price</th>
+          <th>Edition</th>
+          <th>Branch</th>
+          <th>Quantity</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</div>
 
 <!-- Modal -->
-<div id="myModal" class="modal fade" role="dialog">
+<div id="myModal" class="modal" role="dialog">
   <div class="modal-dialog modal-lg">
 
     <!-- Modal content-->
@@ -42,7 +103,7 @@
               <label for="firstName" class="col-sm-2 control-label">Issued date</label>
 
               <div class="col-sm-10">
-                <input type="text" formControlName="dateIssued" class="form-control" id="dateIssued" placeholder="Date format: day-month-year"
+                <input type="text" formControlName="dateIssued" class="form-control" id="dateIssued" placeholder="Date format: year-month-day"
                   name="dateIssued" value="{{dateIssued}}" readonly="readonly">
               </div>
             </div>
@@ -51,13 +112,15 @@
               <label for="firstName" class="col-sm-2 control-label">Return date</label>
 
               <div class="col-sm-10">
-                <input type="text" formControlName="dateExpired" class="form-control" id="dateExpired" placeholder="Date format: day-month-year"
+                <input type="text" formControlName="dateExpired" class="form-control" id="dateExpired" placeholder="Date format: year-month-day"
                   name="dateExpired">
                 <div *ngIf="submitted && rentForm.controls.dateExpired.errors">
                   <span *ngIf="rentForm.controls.dateExpired.errors.required" class="help-block">
                     <i class="fa fa-times-circle-o"></i> Date is required</span>
                   <span *ngIf="rentForm.controls.dateExpired.errors.pattern" class="help-block">
-                    <i class="fa fa-times-circle-o"></i> Date must be in format dd-MM-yyyy</span>
+                    <i class="fa fa-times-circle-o"></i> Date must be in format yyyy-MM-dd</span>
+                  <span *ngIf="rentForm.controls.dateExpired.errors.incorrect" class="help-block">
+                    <i class="fa fa-times-circle-o"></i> Date must be after dateIssued</span>
                 </div>
               </div>
             </div>

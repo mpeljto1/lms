@@ -7,6 +7,8 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import { RentService } from '../service/rent.service';
 import { Rent } from '../model/rent.model';
 import {Router} from "@angular/router";
+import { DataTablesModule } from 'angular-datatables';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-user-dashboard',
@@ -21,6 +23,8 @@ export class UserDashboardComponent implements OnInit {
   rentBookName="";
   dateIssued ="";
   rent:Rent;
+  dtOptions: DataTables.Settings = {};
+  dtTrigger: Subject<any> = new Subject();
 
   constructor(private globals:Globals, private bookService:BookService, private token:TokenStorage,
   private datePipe:DatePipe, private formBuilder: FormBuilder, private rentService:RentService,
@@ -41,6 +45,7 @@ private router:Router) {
     this.bookService.getAvailableBooks()
     .subscribe(res => {
       this.availableBooks =res;
+      this.dtTrigger.next();
     });
   }
 
@@ -62,6 +67,12 @@ private router:Router) {
 
   onSubmit() {
     this.submitted = true;
+    let endDate = new Date(this.rentForm.controls.dateExpired.value);
+    let startDate = new Date(this.dateIssued);
+    
+    if (endDate.getTime() < startDate.getTime()) {
+      this.rentForm.controls['dateExpired'].setErrors({'incorrect':true});
+    }
     if(this.rentForm.invalid) {
       return;
     }
@@ -69,6 +80,7 @@ private router:Router) {
     this.rent.expireDate =this.rentForm.controls.dateExpired.value;
     this.rentService.rentBook(this.rent)
     .subscribe(res => {
+      $("button[data-dismiss=\"modal\"]").click();
       this.router.navigate(['user-panel/list-rent']);
     },
   error => {

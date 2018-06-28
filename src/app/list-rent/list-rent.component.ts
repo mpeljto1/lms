@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from "@angular/router";
 import { RentService } from "../service/rent.service";
 import { Rent } from "../model/rent.model";
@@ -6,6 +6,7 @@ import { Globals } from '../model/Globals';
 import { UserService } from '../service/user.service';
 import { BookService } from '../service/book.service';
 import { DataTablesModule } from 'angular-datatables';
+import { DataTableDirective } from 'angular-datatables';
 import { Subject } from 'rxjs';
 import { Observable } from 'rxjs';
 import { forkJoin } from 'rxjs';
@@ -23,20 +24,20 @@ export class ListRentComponent implements OnInit {
   bookNames: any[];
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
-  render:boolean = false;
+  render: boolean = false;
 
   constructor(private router: Router, private rentService: RentService, private globals: Globals,
     private userService: UserService, private bookService: BookService) {
-      this.userNames = [];
-      this.bookNames = [];
-     }
+    this.userNames = [];
+    this.bookNames = [];
+  }
 
   ngOnInit() {
     this.globals.title = "List of rents";
     this.rentService.getRents()
       .subscribe(data => {
         this.rents = data;
-        
+
         let observables = new Array();
 
         for (let i = 0; i < this.rents.length; i++) {
@@ -71,13 +72,19 @@ export class ListRentComponent implements OnInit {
       });
   }
 
-  returnBook(rent:Rent) {
+  returnBook(rent: Rent) {
     this.rentService.returnABook(rent)
-    .subscribe(res => {
-      this.router.navigate(['admin-panel/list-rent']);
-    },
-  error => {
-    alert(error.error);
-  })
+      .subscribe(res => {
+        
+        for (let index = 0; index < this.rents.length; index++) {
+          if (this.rents[index].id == rent.id) {
+            this.rents[index].dateReturned = new Date().toString();
+          }
+        }
+        this.router.navigate(['admin-panel/list-rent']);
+      },
+        error => {
+          alert(error.error);
+        })
   }
 }
