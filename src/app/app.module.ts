@@ -43,6 +43,7 @@ import { RegisterComponent } from './register/register.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import MyErrorHandler from './MyErorrHandler';
 import { RoleGuard } from './service/role.guard';
+import { DataService } from './service/data.service';
 
 
 @NgModule({
@@ -97,7 +98,8 @@ import { RoleGuard } from './service/role.guard';
       provide: AuthServiceConfig,
       useFactory: getAuthServiceConfigs
     },
-    RoleGuard
+    RoleGuard,
+    DataService
   ],
   bootstrap: [AppComponent]
 })

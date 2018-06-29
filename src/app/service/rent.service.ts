@@ -20,7 +20,7 @@ export class RentService {
     }
 
     getNumberOfIssuedBooks(from:string, to:string) {
-        return this.http.get<number>(this.baseUrl  + '/' + 'issuedBooks/from/' + from + '/to/' + to);
+        return this.http.get<Rent[]>(this.baseUrl  + '/' + 'issuedBooks/from/' + from + '/to/' + to);
     }
 
     getNumberOfReturnedBooks(from:string, to:string) {
@@ -37,5 +37,9 @@ export class RentService {
 
     returnABook(rent: Rent) {
         return this.http.post(this.baseUrl + '/return-rented',rent);
+    }
+
+    getUnreturnedRents() {
+        return this.http.get<Rent[]>(this.baseUrl + "/un-returned");
     }
 }

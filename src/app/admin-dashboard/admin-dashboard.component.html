@@ -2,24 +2,9 @@
 <section class="content">
   <!--Globa row shows number of logged users, number of books users etc-->
   <div class="row">
-    <div class="col-lg-3 col-xs-6">
-      <!-- small box -->
-      <div class="small-box bg-gray">
-        <div class="inner">
-          <h3>uraditi</h3>
-
-          <p>Logged in user</p>
-        </div>
-        <div class="icon">
-          <i class="fa fa-users"></i>
-        </div>
-        <a href="#" class="small-box-footer">More info
-          <i class="fa fa-arrow-circle-right"></i>
-        </a>
-      </div>
-    </div>
+    
     <!-- ./col -->
-    <div class="col-lg-3 col-xs-6">
+    <div class="col-lg-4 col-xs-6">
       <!-- small box -->
       <div class="small-box bg-gray">
         <div class="inner">
@@ -36,7 +21,7 @@
       </div>
     </div>
     <!-- ./col -->
-    <div class="col-lg-3 col-xs-6">
+    <div class="col-lg-4 col-xs-6">
       <!-- small box -->
       <div class="small-box bg-gray">
         <div class="inner">
@@ -53,18 +38,18 @@
       </div>
     </div>
     <!-- ./col -->
-    <div class="col-lg-3 col-xs-6">
+    <div class="col-lg-4 col-xs-6">
       <!-- small box -->
       <div class="small-box bg-gray">
         <div class="inner">
-          <h3>uraditi</h3>
+          <h3>{{nonReturnedBooks}}</h3>
 
           <p>Non returned books</p>
         </div>
         <div class="icon">
           <i class="glyphicon glyphicon-repeat"></i>
         </div>
-        <a href="#" class="small-box-footer">More info
+        <a href="#" [routerLink]="['/admin-panel/list-rent']" class="small-box-footer">More info
           <i class="fa fa-arrow-circle-right"></i>
         </a>
       </div>
@@ -74,65 +59,74 @@
   <!--Today report row-->
   <div class="row bg-gray-light" id="today">
     <section class="content-header">
-      <h1>Today report</h1>
+      <h1 style="display: inline;">Today report</h1>
+      <button data-toggle="collapse" data-target="#today_report" class="pull-right btn btn-info" (click)="getTodayReport()">V</button>
     </section>
-    <section>
+    <section class="collapse" id="today_report">
       <div class="row">
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-aqua">
-            <div class="inner">
-              <h3>{{newBooksToday}}</h3>
+        <a href="" data-toggle="modal" data-target="#modalBooks" (click)="getBooks('today')">
+          <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-aqua">
+              <div class="inner">
+                <h3>{{newBooksToday}}</h3>
 
-              <p>New book today</p>
-            </div>
-            <div class="icon">
-              <i class="fa fa-book"></i>
+                <p>New book today</p>
+              </div>
+              <div class="icon">
+                <i class="fa fa-book"></i>
+              </div>
             </div>
           </div>
-        </div>
+        </a>
         <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-green">
-            <div class="inner">
-              <h3>{{booksIssuedToday}}</h3>
+        <a href="" data-toggle="modal" data-target="#myModal" (click)="getIssuedBooks('today')">
+          <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-green">
+              <div class="inner">
+                <h3>{{booksIssuedToday}}</h3>
 
-              <p>Books issued</p>
-            </div>
-            <div class="icon">
-              <i class="fa fa-book"></i>
+                <p>Books issued</p>
+              </div>
+              <div class="icon">
+                <i class="fa fa-book"></i>
+              </div>
             </div>
           </div>
-        </div>
+        </a>
         <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-yellow">
-            <div class="inner">
-              <h3>{{newUsersToday}}</h3>
+        <a href="" data-toggle="modal" data-target="#modalUsers" (click)="getMembers('today')">
+          <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-yellow">
+              <div class="inner">
+                <h3>{{newUsersToday}}</h3>
 
-              <p>New members</p>
-            </div>
-            <div class="icon">
-              <i class="fa fa-users"></i>
+                <p>New members</p>
+              </div>
+              <div class="icon">
+                <i class="fa fa-users"></i>
+              </div>
             </div>
           </div>
-        </div>
+        </a>
         <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-red">
-            <div class="inner">
-              <h3>{{booksReturnedToday}}</h3>
+        <a href="" data-toggle="modal" data-target="#myModal" (click)="getReturnedBooks('today')">
+          <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-red">
+              <div class="inner">
+                <h3>{{booksReturnedToday}}</h3>
 
-              <p>Books returned</p>
-            </div>
-            <div class="icon">
-              <i class="glyphicon glyphicon-repeat"></i>
+                <p>Books returned</p>
+              </div>
+              <div class="icon">
+                <i class="glyphicon glyphicon-repeat"></i>
+              </div>
             </div>
           </div>
-        </div>
+        </a>
         <!-- ./col -->
       </div>
     </section>
@@ -140,65 +134,74 @@
   <!--Last day report-->
   <div class="row bg-gray-light">
     <section class="content-header">
-      <h1>Last day report</h1>
+      <h1 style="display: inline;">Last day report</h1>
+      <button data-toggle="collapse" data-target="#last_day_report" class="pull-right btn btn-info" (click)="getLastDayReport()">V</button>
     </section>
-    <section>
+    <section class="collapse" id="last_day_report">
       <div class="row">
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-aqua">
-            <div class="inner">
-              <h3>{{newBooksYesterday}}</h3>
+        <a href="" data-toggle="modal" data-target="#modalBooks" (click)="getBooks('yesterday')">
+          <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-aqua">
+              <div class="inner">
+                <h3>{{newBooksYesterday}}</h3>
 
-              <p>New books last day</p>
-            </div>
-            <div class="icon">
-              <i class="fa fa-book"></i>
+                <p>New books last day</p>
+              </div>
+              <div class="icon">
+                <i class="fa fa-book"></i>
+              </div>
             </div>
           </div>
-        </div>
+        </a>
         <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-green">
-            <div class="inner">
-              <h3>{{booksIssuedYesterday}}</h3>
+        <a href="" data-toggle="modal" data-target="#myModal" (click)="getIssuedBooks('yesterday')">
+          <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-green">
+              <div class="inner">
+                <h3>{{booksIssuedYesterday}}</h3>
 
-              <p>Books issued</p>
-            </div>
-            <div class="icon">
-              <i class="fa fa-book"></i>
+                <p>Books issued</p>
+              </div>
+              <div class="icon">
+                <i class="fa fa-book"></i>
+              </div>
             </div>
           </div>
-        </div>
+        </a>
         <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-yellow">
-            <div class="inner">
-              <h3>{{newUsersYesterday}}</h3>
+        <a href="" data-toggle="modal" data-target="#modalUsers" (click)="getMembers('yesterday')">
+          <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-yellow">
+              <div class="inner">
+                <h3>{{newUsersYesterday}}</h3>
 
-              <p>New members</p>
-            </div>
-            <div class="icon">
-              <i class="fa fa-users"></i>
+                <p>New members</p>
+              </div>
+              <div class="icon">
+                <i class="fa fa-users"></i>
+              </div>
             </div>
           </div>
-        </div>
+        </a>
         <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-red">
-            <div class="inner">
-              <h3>{{booksReturnedYesterday}}</h3>
+        <a href="" data-toggle="modal" data-target="#myModal" (click)="getReturnedBooks('yesterday')">
+          <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-red">
+              <div class="inner">
+                <h3>{{booksReturnedYesterday}}</h3>
 
-              <p>Books returned</p>
-            </div>
-            <div class="icon">
-              <i class="glyphicon glyphicon-repeat"></i>
+                <p>Books returned</p>
+              </div>
+              <div class="icon">
+                <i class="glyphicon glyphicon-repeat"></i>
+              </div>
             </div>
           </div>
-        </div>
+        </a>
         <!-- ./col -->
       </div>
     </section>
@@ -206,65 +209,74 @@
   <!--Last week report-->
   <div class="row bg-gray-light">
     <section class="content-header">
-      <h1>Last 7 day report</h1>
+      <h1 style="display: inline;">Last 7 day report</h1>
+      <button data-toggle="collapse" data-target="#last_week_report" class="pull-right btn btn-info" (click)="getLastWeekReport()">V</button>
     </section>
-    <section>
+    <section class="collapse" id="last_week_report">
       <div class="row">
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-aqua">
-            <div class="inner">
-              <h3>{{newBooksLastWeek}}</h3>
+        <a href="" data-toggle="modal" data-target="#modalBooks" (click)="getBooks('week')">
+          <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-aqua">
+              <div class="inner">
+                <h3>{{newBooksLastWeek}}</h3>
 
-              <p>New books last week</p>
-            </div>
-            <div class="icon">
-              <i class="fa fa-book"></i>
+                <p>New books last week</p>
+              </div>
+              <div class="icon">
+                <i class="fa fa-book"></i>
+              </div>
             </div>
           </div>
-        </div>
+        </a>
         <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-green">
-            <div class="inner">
-              <h3>{{booksIssuedLastWeek}}</h3>
+        <a href="" data-toggle="modal" data-target="#myModal" (click)="getIssuedBooks('week')">
+          <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-green">
+              <div class="inner">
+                <h3>{{booksIssuedLastWeek}}</h3>
 
-              <p>Books issued</p>
-            </div>
-            <div class="icon">
-              <i class="fa fa-book"></i>
+                <p>Books issued</p>
+              </div>
+              <div class="icon">
+                <i class="fa fa-book"></i>
+              </div>
             </div>
           </div>
-        </div>
+        </a>
         <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-yellow">
-            <div class="inner">
-              <h3>{{newUsersLastWeek}}</h3>
+        <a href="" data-toggle="modal" data-target="#modalUsers" (click)="getMembers('week')">
+          <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-yellow">
+              <div class="inner">
+                <h3>{{newUsersLastWeek}}</h3>
 
-              <p>New members</p>
-            </div>
-            <div class="icon">
-              <i class="fa fa-users"></i>
+                <p>New members</p>
+              </div>
+              <div class="icon">
+                <i class="fa fa-users"></i>
+              </div>
             </div>
           </div>
-        </div>
+        </a>
         <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-red">
-            <div class="inner">
-              <h3>{{booksReturnedLastWeek}}</h3>
+        <a href="" data-toggle="modal" data-target="#myModal" (click)="getReturnedBooks('week')">
+          <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-red">
+              <div class="inner">
+                <h3>{{booksReturnedLastWeek}}</h3>
 
-              <p>Books returned</p>
-            </div>
-            <div class="icon">
-              <i class="glyphicon glyphicon-repeat"></i>
+                <p>Books returned</p>
+              </div>
+              <div class="icon">
+                <i class="glyphicon glyphicon-repeat"></i>
+              </div>
             </div>
           </div>
-        </div>
+        </a>
         <!-- ./col -->
       </div>
     </section>
@@ -272,67 +284,266 @@
   <!--Last month report-->
   <div class="row bg-gray-light">
     <section class="content-header">
-      <h1>Last 30 day report</h1>
+      <h1 style="display: inline;">Last 30 day report</h1>
+      <button data-toggle="collapse" data-target="#last_month_report" class="pull-right btn btn-info" (click)="getLastMonthReport()">V</button>
     </section>
-    <section>
+    <section class="collapse" id="last_month_report">
       <div class="row">
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-aqua">
-            <div class="inner">
-              <h3>{{newBooksLastMonth}}</h3>
+        <a href="" data-toggle="modal" data-target="#modalBooks" (click)="getBooks('month')">
+          <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-aqua">
+              <div class="inner">
+                <h3>{{newBooksLastMonth}}</h3>
 
-              <p>New books last month</p>
-            </div>
-            <div class="icon">
-              <i class="fa fa-book"></i>
+                <p>New books last month</p>
+              </div>
+              <div class="icon">
+                <i class="fa fa-book"></i>
+              </div>
             </div>
           </div>
-        </div>
+        </a>
         <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-green">
-            <div class="inner">
-              <h3>{{booksIssuedLastMonth}}</h3>
+        <a href="" data-toggle="modal" data-target="#myModal" (click)="getIssuedBooks('month')">
+          <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-green">
+              <div class="inner">
+                <h3>{{booksIssuedLastMonth}}</h3>
 
-              <p>Books issued</p>
-            </div>
-            <div class="icon">
-              <i class="fa fa-book"></i>
+                <p>Books issued</p>
+              </div>
+              <div class="icon">
+                <i class="fa fa-book"></i>
+              </div>
             </div>
           </div>
-        </div>
+        </a>
         <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-yellow">
-            <div class="inner">
-              <h3>{{newUsersLastMonth}}</h3>
+        <a href="" data-toggle="modal" data-target="#modalUsers" (click)="getMembers('month')">
+          <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-yellow">
+              <div class="inner">
+                <h3>{{newUsersLastMonth}}</h3>
 
-              <p>New members</p>
-            </div>
-            <div class="icon">
-              <i class="fa fa-users"></i>
+                <p>New members</p>
+              </div>
+              <div class="icon">
+                <i class="fa fa-users"></i>
+              </div>
             </div>
           </div>
-        </div>
+        </a>
         <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-red">
-            <div class="inner">
-              <h3>{{booksReturnedLastMonth}}</h3>
+        <a href="" data-toggle="modal" data-target="#myModal" (click)="getReturnedBooks('month')">
+          <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-red">
+              <div class="inner">
+                <h3>{{booksReturnedLastMonth}}</h3>
 
-              <p>Books returned</p>
-            </div>
-            <div class="icon">
-              <i class="glyphicon glyphicon-repeat"></i>
+                <p>Books returned</p>
+              </div>
+              <div class="icon">
+                <i class="glyphicon glyphicon-repeat"></i>
+              </div>
             </div>
           </div>
-        </div>
+        </a>
         <!-- ./col -->
       </div>
     </section>
+  </div>
+
+  <!-- Modal -->
+  <div id="myModal" class="modal" role="dialog">
+    <div class="modal-dialog modal-lg">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Returned books</h4>
+        </div>
+        <div class="modal-body">
+          <!-- /.box-header -->
+          <div class="box-body">
+            <table id="list-book-table" class="table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th class="hidden">Id</th>
+                  <th>User</th>
+                  <th>Rented books</th>
+                  <th>Date issued</th>
+                  <th>Date returned</th>
+                  <th>Date expired</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let rent of rents; let i = index;">
+                  <td class="hidden">{{rent.id}}</td>
+                  <td>{{userNames[i]}}</td>
+                  <td>{{bookNames[i]}}</td>
+                  <td>{{rent.dateIssued | date: 'dd/MM/yyyy'}}</td>
+                  <td>{{rent.dateReturned | date: 'dd/MM/yyyy'}}</td>
+                  <td>{{rent.expireDate | date: 'dd/MM/yyyy'}}</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th class="hidden">Id</th>
+                  <th>User</th>
+                  <th>Rented books</th>
+                  <th>Date issued</th>
+                  <th>Date returned</th>
+                  <th>Date expired</th>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+          <!-- /.box-body -->
+          <div class="box-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div id="modalBooks" class="modal" role="dialog">
+    <div class="modal-dialog modal-lg">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Created books</h4>
+        </div>
+        <div class="modal-body">
+          <!-- /.box-header -->
+          <div class="box-body">
+            <table id="list-book-table" class="table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th class="hidden">Id</th>
+                  <th>Isbn</th>
+                  <th>Name</th>
+                  <th>Author</th>
+                  <th>Publisher</th>
+                  <th>Price</th>
+                  <th>Edition</th>
+                  <th>Branch</th>
+                  <th>Quantity</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let book of books">
+                  <td class="hidden">{{book.id}}</td>
+                  <td>{{book.isbn}}</td>
+                  <td>{{book.name}}</td>
+                  <td>{{book.author}}</td>
+                  <td>{{book.publisher}}</td>
+                  <td>{{book.price}}</td>
+                  <td>{{book.edition}}</td>
+                  <td>{{book.branch}}</td>
+                  <td>{{book.quantity}}</td>
+                  <td>{{book.status}}</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th class="hidden">Id</th>
+                  <th>Isbn</th>
+                  <th>Name</th>
+                  <th>Author</th>
+                  <th>Publisher</th>
+                  <th>Price</th>
+                  <th>Edition</th>
+                  <th>Branch</th>
+                  <th>Quantity</th>
+                  <th>Status</th>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+          <!-- /.box-body -->
+          <div class="box-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div id="modalUsers" class="modal" role="dialog">
+    <div class="modal-dialog modal-lg">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Created users</h4>
+        </div>
+        <div class="modal-body">
+          <!-- /.box-header -->
+          <div class="box-body">
+            <table id="list-book-table" class="table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th class="hidden">Id</th>
+                  <th>FirstName</th>
+                  <th>LastName</th>
+                  <th>Address</th>
+                  <th>Gender</th>
+                  <th>Phone</th>
+                  <th>Email</th>
+                  <th>Username</th>
+                  <th>Role</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let user of users">
+                  <td class="hidden">{{user.id}}</td>
+                  <td>{{user.firstName}}</td>
+                  <td>{{user.lastName}}</td>
+                  <td>{{user.address}}</td>
+                  <td>{{user.gender}}</td>
+                  <td>{{user.phone}}</td>
+                  <td>{{user.email}}</td>
+                  <td>{{user.username}}</td>
+                  <td>{{user.role}}</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th class="hidden">Id</th>
+                  <th>FirstName</th>
+                  <th>LastName</th>
+                  <th>Address</th>
+                  <th>Gender</th>
+                  <th>Phone</th>
+                  <th>Email</th>
+                  <th>Username</th>
+                  <th>Role</th>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+          <!-- /.box-body -->
+          <div class="box-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-default pull-right">To PDF</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
   </div>
 </section>

@@ -9,6 +9,7 @@ import {Observable} from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BookService } from '../service/book.service';
 import { AuthService, GoogleLoginProvider } from "angular5-social-login";
+import { DataService } from '../service/data.service';
 
 @Component({
   selector: 'app-login',
@@ -23,7 +24,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private router: Router, private authService: AuthService2,
     private tokenStorage: TokenStorage, private userService: UserService, private http:HttpClient,
-  private bookService: BookService, private socialAuthService: AuthService) { }
+  private bookService: BookService, private socialAuthService: AuthService, private dataService: DataService) { }
 
   onSubmit() {
     this.submitted = true;
@@ -43,6 +44,7 @@ export class LoginComponent implements OnInit {
           .subscribe(res => {
             this.tokenStorage.saveUserId(res.id.toString());
             this.tokenStorage.saveRole(res.role.toLowerCase());
+            this.dataService.changeMessage(res.firstName + " " + res.lastName);
             if (res.role.toLowerCase() == 'admin') {
               this.router.navigate(['admin-panel']);
             } else {
@@ -77,6 +79,7 @@ export class LoginComponent implements OnInit {
           .subscribe(res => {
             this.tokenStorage.saveUserId(res.id.toString());
             this.tokenStorage.saveRole(res.role.toLowerCase());
+            this.dataService.changeMessage(res.firstName + " " + res.lastName);
             if (res.role.toLowerCase() == 'admin') {
               this.router.navigate(['admin-panel']);
             } else {
