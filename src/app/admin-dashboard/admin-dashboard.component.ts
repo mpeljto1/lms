@@ -10,6 +10,10 @@ import { Book } from '../model/book.model';
 import { forkJoin } from 'rxjs';
 import { User } from '../model/user.model';
 import { DataService } from '../service/data.service';
+//import * as jsPDF from 'jspdf';
+import * as html2canvas from "html2canvas";
+
+declare var jsPDF: any;
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -47,8 +51,8 @@ export class AdminDashboardComponent implements OnInit {
   users: User[];
 
   constructor(private globals: Globals, private userService: UserService, private bookService: BookService,
-    private rentService: RentService, private datePipe: DatePipe, private token: TokenStorage, 
-    private dataService:DataService) {
+    private rentService: RentService, private datePipe: DatePipe, private token: TokenStorage,
+    private dataService: DataService) {
     this.returnedBooks = [];
     this.userNames = [];
     this.bookNames = [];
@@ -78,7 +82,7 @@ export class AdminDashboardComponent implements OnInit {
         for (let index = 0; index < res.length; index++) {
           this.nonReturnedBooks += res[index].rentedBooks.length;
         }
-      })
+      });
   }
 
   getTodayReport() {
@@ -340,7 +344,7 @@ export class AdminDashboardComponent implements OnInit {
           },
           error => console.log('Error: ', error)
         );
-        
+
         let bookObservable = new Array();
         let userBooks = new Array();
         for (let i = 0; i < rents.length; i++) {
@@ -394,10 +398,10 @@ export class AdminDashboardComponent implements OnInit {
       from = this.datePipe.transform(month, 'yyyy-MM-dd');
     }
 
-    this.bookService.getBooksByDateCreated(from,to)
-    .subscribe(resp => {
-      this.books = resp;
-    });
+    this.bookService.getBooksByDateCreated(from, to)
+      .subscribe(resp => {
+        this.books = resp;
+      });
   }
 
   getMembers(period: string) {
@@ -435,10 +439,73 @@ export class AdminDashboardComponent implements OnInit {
       from = this.datePipe.transform(month, 'yyyy-MM-dd');
     }
 
-    this.userService.getUsersByDateCreated(from,to)
-    .subscribe(resp => {
-      this.users = resp;
-    });
+    this.userService.getUsersByDateCreated(from, to)
+      .subscribe(resp => {
+        this.users = resp;
+      });
+  }
+
+
+
+  exportPDF(id : string) {
+    var elem = document.getElementById(id);
+
+    return html2canvas(elem).then(function (canvas) {
+      var myImage = canvas.toDataURL("image/jpeg,1.0");
+
+      // jspdf changes
+      var pdf = new jsPDF('p', 'mm', 'a4');
+
+      var imgWidth = (canvas.width * 20)/90;
+      var imgHeight = (canvas.height * 20)/90;
+
+      var width = pdf.internal.pageSize.width;
+      var height = pdf.internal.pageSize.height;
+      pdf.setFontSize(16);
+      pdf.text(10, 10, "Report");
+      pdf.addImage(myImage, 'JPEG', 0, 30, imgWidth, imgHeight); // 2: 19
+      pdf.save('Download.pdf');
+    }
+    );
+    /*
+        //var doc = new jsPDF('p', 'pt');
+        var doc = new jsPDF();
+        var totalPagesExp = "{total_pages_count_string}";
+    
+        var elem = document.getElementById("list-user-table");
+        var res = doc.autoTableHtmlToJson(elem);
+    
+        var pageContent = function (data) {
+          // HEADER
+          doc.setFontSize(20);
+          doc.setTextColor(40);
+          doc.setFontStyle('normal');
+    
+          doc.text("Škola", data.settings.margin.left + 15, 22);
+    
+          // FOOTER
+          var str = "Page " + data.pageCount;
+          // Total page number plugin only available in jspdf v1.0+
+          if (typeof doc.putTotalPages === 'function') {
+            str = str + " of " + totalPagesExp;
+          }
+          doc.setFontSize(10);
+          var pageHeight = doc.internal.pageSize.height || doc.internal.pageSize.getHeight();
+          doc.text(str, data.settings.margin.left, pageHeight - 10);
+        };
+    
+        doc.autoTable(res.columns, res.data, {
+          addPageContent: pageContent,
+          margin: { top: 30 }
+        });
+    
+        // Total page number plugin only available in jspdf v1.0+
+        if (typeof doc.putTotalPages === 'function') {
+          doc.putTotalPages(totalPagesExp);
+      }
+    
+        doc.save("table.pdf");*/
+
   }
 
 }

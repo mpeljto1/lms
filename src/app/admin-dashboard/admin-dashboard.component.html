@@ -369,7 +369,7 @@
         </div>
         <div class="modal-body">
           <!-- /.box-header -->
-          <div class="box-body">
+          <div class="box-body" id="modal-body-rented-books">
             <table id="list-book-table" class="table table-bordered table-striped">
               <thead>
                 <tr>
@@ -406,6 +406,7 @@
           <!-- /.box-body -->
           <div class="box-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-default pull-right"(click)="exportPDF('modal-body-rented-books')">To PDF</button>
           </div>
         </div>
       </div>
@@ -425,7 +426,7 @@
         </div>
         <div class="modal-body">
           <!-- /.box-header -->
-          <div class="box-body">
+          <div class="box-body" id="modal-body-created-books">
             <table id="list-book-table" class="table table-bordered table-striped">
               <thead>
                 <tr>
@@ -474,6 +475,7 @@
           <!-- /.box-body -->
           <div class="box-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-default pull-right" (click)="exportPDF('modal-body-created-books')">To PDF</button>
           </div>
         </div>
       </div>
@@ -493,8 +495,8 @@
         </div>
         <div class="modal-body">
           <!-- /.box-header -->
-          <div class="box-body">
-            <table id="list-book-table" class="table table-bordered table-striped">
+          <div class="box-body" id="modal-body-users">
+            <table id="list-user-table" class="table table-bordered table-striped">
               <thead>
                 <tr>
                   <th class="hidden">Id</th>
@@ -539,7 +541,7 @@
           <!-- /.box-body -->
           <div class="box-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-default pull-right">To PDF</button>
+            <button type="button" class="btn btn-default pull-right" id="export" (click)="exportPDF('modal-body-users')">To PDF</button>
           </div>
         </div>
       </div>
@@ -547,3 +549,6 @@
     </div>
   </div>
 </section>
+
+
+
